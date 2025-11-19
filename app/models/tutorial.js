@@ -23,7 +23,7 @@ Tutorial.getAll = (page, size, title, result) => {
 
         let sql = "SELECT * FROM tutorials";
         if (title) sql += ` WHERE title LIKE "%${title}%"`;
-        sql += ` LIMIT ${size} OFFSET ${((page - 1) * size)}`;
+        sql += ` LIMIT ${size} OFFSET ${(page - 1) * size}`;
 
         conn.query(sql, (err, res) => {
             if (err) {
@@ -35,7 +35,7 @@ Tutorial.getAll = (page, size, title, result) => {
                 pages: size,
                 current: page,
                 data: res,
-                total: total
+                total: total,
             });
         });
     });
@@ -57,7 +57,7 @@ Tutorial.getById = (id, result) => {
     });
 };
 
-Tutorial.getPublished = result => {
+Tutorial.getPublished = (result) => {
     conn.query("SELECT * FROM tutorials WHERE published = true", (err, res) => {
         if (err) {
             result(err, null);
@@ -80,7 +80,8 @@ Tutorial.create = (val, result) => {
 };
 
 Tutorial.update = (id, val, result) => {
-    conn.query("UPDATE tutorials SET title = ?, description = ?, published = ? WHERE id = ?",
+    conn.query(
+        "UPDATE tutorials SET title = ?, description = ?, published = ? WHERE id = ?",
         [val.title, val.description, val.published, id],
         (err, res) => {
             if (err) {
@@ -114,7 +115,7 @@ Tutorial.remove = (id, result) => {
     });
 };
 
-Tutorial.removeAll = result => {
+Tutorial.removeAll = (result) => {
     conn.query("DELETE FROM tutorials", (err, res) => {
         if (err) {
             result(err, null);

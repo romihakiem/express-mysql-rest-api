@@ -9,7 +9,7 @@ exports.findAll = (req, res) => {
     Tutorial.getAll(page, size, title, (err, data) => {
         if (err)
             res.status(500).send({
-                message: err.message || "Error retrieving data."
+                message: err.message || "Error retrieving data.",
             });
         else res.send(data);
     });
@@ -21,11 +21,11 @@ exports.findOne = (req, res) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Data not found with id ${req.params.id}.`
+                    message: `Data not found with id ${req.params.id}.`,
                 });
             } else {
                 res.status(500).send({
-                    message: `Error retrieving data with id ${req.params.id}.`
+                    message: `Error retrieving data with id ${req.params.id}.`,
                 });
             }
         } else res.send(data);
@@ -37,7 +37,7 @@ exports.findPublished = (req, res) => {
     Tutorial.getPublished((err, data) => {
         if (err)
             res.status(500).send({
-                message: err.message || "Error retrieving data."
+                message: err.message || "Error retrieving data.",
             });
         else res.send(data);
     });
@@ -47,7 +47,7 @@ exports.findPublished = (req, res) => {
 exports.create = (req, res) => {
     if (!req.body.title) {
         res.status(400).send({
-            message: "Content can not be empty!"
+            message: "Content can not be empty!",
         });
         return;
     }
@@ -55,13 +55,13 @@ exports.create = (req, res) => {
     const val = new Tutorial({
         title: req.body.title,
         description: req.body.description,
-        published: req.body.published || false
+        published: req.body.published || false,
     });
 
     Tutorial.create(val, (err, data) => {
         if (err)
             res.status(500).send({
-                message: err.message || "Error creating data."
+                message: err.message || "Error creating data.",
             });
         else res.send({ message: "Successfully created.", data: data });
     });
@@ -71,7 +71,7 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
     if (!req.body.title) {
         res.status(400).send({
-            message: "Content can not be empty!"
+            message: "Content can not be empty!",
         });
         return;
     }
@@ -80,11 +80,11 @@ exports.update = (req, res) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Data not updated with id ${req.params.id}.`
+                    message: `Data not updated with id ${req.params.id}.`,
                 });
             } else {
                 res.status(500).send({
-                    message: `Error updating data with id ${req.params.id}.`
+                    message: `Error updating data with id ${req.params.id}.`,
                 });
             }
         } else res.send({ message: "Successfully updated.", data: data });
@@ -97,11 +97,11 @@ exports.delete = (req, res) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Data not deleted with id ${req.params.id}.`
+                    message: `Data not deleted with id ${req.params.id}.`,
                 });
             } else {
                 res.status(500).send({
-                    message: `Error deleting data with id ${req.params.id}.`
+                    message: `Error deleting data with id ${req.params.id}.`,
                 });
             }
         } else res.send({ message: "Successfully deleted." });
@@ -113,7 +113,7 @@ exports.deleteAll = (req, res) => {
     Tutorial.removeAll((err, data) => {
         if (err)
             res.status(500).send({
-                message: err.message || "Error deleting data."
+                message: err.message || "Error deleting data.",
             });
         else res.send({ message: "Successfully deleted." });
     });
