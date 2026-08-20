@@ -1,4 +1,4 @@
-# Express + mysql2 REST API Skeleton (No ORM)
+# Express + MySQL (mysql2) REST API Skeleton (No ORM)
 
 REST API skeleton menggunakan **Node.js + Express**, **MySQL via mysql2** (tanpa Sequelize/ORM apapun, raw SQL dengan parameterized query), autentikasi **JWT**, CRUD lengkap, dan **graceful shutdown**.
 
